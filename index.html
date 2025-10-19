@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To the love of Shadi & Retaj</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+
+    <canvas id="falling-petals"></canvas>
+    
+    <div class="music-player">
+        <audio controls loop autoplay>
+            <source src="your-cigarettes-after-sex-song.mp3" type="audio/mpeg">
+            المتصفح لا يدعم تشغيل الصوت.
+        </audio>
+        <p class="music-note">موسيقى هادئة من أجلكِ 🎶</p>
+    </div>
+
+    <header class="main-greeting">
+        <h1 class="typing-text" id="ar-message"></h1> 
+        <h1 class="typing-text-en" id="en-message"></h1>
+    </header>
+
+    <section class="options-section">
+        <h2>اكتشفي ما يخفيه قلبي لكِ:</h2>
+        <div class="options-grid">
+            
+            <a href="message.html" class="option-card love-message">
+                <h3>رسالة حُب لا تنتهي</h3>
+                <p>كلمات من القلب إلى ملكة قلبي (الصفحة الغامقة)</p>
+            </a>
+
+            <a href="#i-love-you-section" class="option-card i-love-you-btn">
+                <h3>100 مرّة "أُحِبُك"</h3>
+                <p>مئات القلوب تحلق من أجلكِ!</p>
+            </a>
+
+            <a href="https://www.instagram.com/mgz.v?igsh=dXQzc2hhZXBrMGZo&utm_source=qr" target="_blank" class="option-card instagram-link">
+                <h3>حساب محبوبك</h3>
+                <p>إلى أميرتي الجميلة من محبوبك شادي</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="love-bomb" id="i-love-you-section">
+        </section>
+
+    <footer>
+        <p>&copy; 2025. To the love of Shadi & Retaj.</p>
+    </footer>
+
+    <script>
+        // تأثير الكتابة التلقائية
+        const arMessage = "مرحبًا يا أميرة شادي";
+        const enMessage = "Hello, Shadi's Princess";
+        const arElement = document.getElementById('ar-message');
+        const enElement = document.getElementById('en-message');
+        
+        // وظيفة الكتابة التلقائية
+        function typeText(element, message, delay) {
+            let i = 0;
+            function typing() {
+                if (i < message.length) {
+                    element.innerHTML += message.charAt(i);
+                    i++;
+                    setTimeout(typing, delay);
+                }
+            }
+            typing();
+        }
+
+        // بدء الكتابة العربية
+        setTimeout(() => typeText(arElement, arMessage, 100), 500);
+        // بدء الكتابة الإنجليزية بعد انتهاء العربية
+        setTimeout(() => typeText(enElement, enMessage, 100), arMessage.length * 100 + 1000);
+
+        // توليد الـ 100 أحبك مع القلوب
+        const loveSection = document.getElementById('i-love-you-section');
+        const loveWords = "أُحِبُكِ ❤️";
+        const container = document.createElement('div');
+        container.className = 'love-words-container';
+
+        for (let i = 0; i < 100; i++) {
+            const span = document.createElement('span');
+            span.textContent = loveWords;
+            // لإضافة تأثير التذبذب العشوائي (اختياري)
+            span.style.animationDelay = `${Math.random() * 5}s`;
+            container.appendChild(span);
+        }
+        loveSection.appendChild(container);
+
+
+        // سكريبت الورد/الثلج المتطاير (لتبسيط الكود، استخدمنا مكتبة بسيطة)
+        const canvas = document.getElementById('falling-petals');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const numParticles = 50;
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        // إنشاء كائن يمثل وردة (أو قلب)
+        function Particle() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 5 + 2;
+            this.speedX = Math.random() * 0.5 - 0.25;
+            this.speedY = Math.random() * 1.5 + 0.5;
+            // اختر لون وردي فاتح أو أبيض
+            this.color = 'rgba(255, 192, 203, 0.8)'; 
+        }
+
+        Particle.prototype.update = function() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            // إعادة الوردة إذا خرجت من الأسفل
+            if (this.y > canvas.height) {
+                this.y = -this.size;
+                this.x = Math.random() * canvas.width;
+            }
+        };
+
+        Particle.prototype.draw = function() {
+            ctx.fillStyle = this.color;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+        };
+
+        function init() {
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            // مسح الشاشة بالكامل مع الحفاظ على شفافية
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>

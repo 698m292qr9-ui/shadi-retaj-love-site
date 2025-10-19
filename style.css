@@ -1,0 +1,249 @@
+/*==================================*/
+/* التنسيقات الأساسية والخطوط   */
+/*==================================*/
+body {
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.7;
+    text-align: right;
+    transition: background-color 0.5s, color 0.5s; /* للانتقال السلس بين الثيمات */
+}
+
+h1, h2, h3 {
+    font-family: 'Great Vibes', cursive; /* خط أنيق للعناوين */
+    margin-top: 0;
+}
+
+/*==================================*/
+/* الـ ThEMES            */
+/*==================================*/
+
+/* الثيم الفاتح (لصفحة index.html) */
+.light-theme {
+    background-color: #FFF0F5; /* لون وردي باستيلي فاتح جداً */
+    color: #4B0082; /* بنفسجي غامق للنصوص */
+}
+.light-theme h1, .light-theme h2, .light-theme h3 {
+    color: #FF69B4; /* وردي ساخن للعناوين */
+}
+.light-theme .option-card {
+    background-color: #FFFFFF;
+    box-shadow: 0 8px 16px rgba(255, 105, 180, 0.15);
+}
+
+/* الثيم الغامق (لصفحة message.html) */
+.dark-theme {
+    background-color: #2F4F4F; /* لون أخضر داكن/غامق جداً */
+    color: #F0FFF0; /* أبيض عاجي للنصوص */
+}
+.dark-theme h1, .dark-theme h2, .dark-theme h3 {
+    color: #ADD8E6; /* أزرق فاتح / سماوي للعناوين */
+}
+.dark-theme .love-letter-page {
+    background-color: #1C313A; /* خلفية أغمق للبطاقة */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+/*==================================*/
+/* تنسيق الهيكل العام        */
+/*==================================*/
+
+.music-player {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    text-align: center;
+}
+.music-note {
+    font-size: 0.8em;
+    color: inherit;
+    margin-top: 5px;
+}
+/* إخفاء شريط التحكم الافتراضي ليظهر بشكل أنظف */
+audio {
+    opacity: 0.8;
+}
+
+/* الترحيب الرئيسي */
+.main-greeting {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.typing-text {
+    font-size: 3em;
+    margin-bottom: 5px;
+}
+.typing-text-en {
+    font-size: 2.5em;
+    font-family: 'Great Vibes', cursive;
+    margin-top: 0;
+}
+
+/*==================================*/
+/* قسم الخيارات والتنقل       */
+/*==================================*/
+.options-section {
+    max-width: 1000px;
+    margin: 40px auto;
+    text-align: center;
+    padding: 0 20px 80px;
+}
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+.option-card {
+    display: block;
+    padding: 30px;
+    border-radius: 15px;
+    text-decoration: none;
+    transition: transform 0.3s, background-color 0.3s;
+    text-align: center;
+}
+.option-card:hover {
+    transform: translateY(-10px);
+    opacity: 0.9;
+}
+.option-card h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+.option-card p {
+    font-size: 1em;
+    color: inherit;
+}
+.love-message h3, .i-love-you-btn h3, .instagram-link h3 {
+    color: #FF69B4; 
+}
+.instagram-link h3 {
+    color: #4B0082;
+}
+
+
+/*==================================*/
+/* صفحة رسالة الحب (الغامق)     */
+/*==================================*/
+.love-letter-page {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 50px;
+    border-radius: 15px;
+    min-height: 90vh;
+}
+.elegant-title {
+    font-size: 3.5em;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #FFDAB9; /* لون الخوخ الفاتح للعنوان الغامق */
+}
+.letter-content p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    line-height: 2;
+    padding-right: 10px;
+    border-right: 2px solid #ADD8E6;
+}
+.signature {
+    text-align: left;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 50px !important;
+    font-size: 1.5em !important;
+}
+.back-button {
+    color: #ADD8E6;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 20px;
+    transition: color 0.3s;
+}
+.back-button:hover {
+    color: #FFFFFF;
+}
+
+/*==================================*/
+/* تأثير الـ 100 كلمة "أحبك"    */
+/*==================================*/
+#i-love-you-section {
+    text-align: center;
+    padding: 50px 0;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.love-words-container {
+    column-count: 3; /* تقسيم الكلمات على 3 أعمدة */
+    column-gap: 20px;
+}
+#i-love-you-section span {
+    display: inline-block;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #FF1493; /* لون وردي عميق */
+    margin: 5px;
+    /* تأثير طفيف للتطاير/التذبذب */
+    animation: float-heart 5s ease-in-out infinite alternate; 
+    opacity: 0.9;
+}
+
+@keyframes float-heart {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(-5px) rotate(2deg); opacity: 1; }
+}
+
+/*==================================*/
+/* تذييل الصفحة          */
+/*==================================*/
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #FF69B4; /* وردي ساخن */
+    color: #FFFFFF;
+    font-size: 0.9em;
+    margin-top: 50px;
+}
+
+/* تأثير الورد المتطاير (Canvas) */
+#falling-petals {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* للسماح بالضغط على العناصر خلف الـ canvas */
+    z-index: 999;
+}
+
+
+/*==================================*/
+/* الاستجابة للجوال        */
+/*==================================*/
+@media (max-width: 768px) {
+    .typing-text {
+        font-size: 2em;
+    }
+    .typing-text-en {
+        font-size: 1.8em;
+    }
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+    .love-words-container {
+        column-count: 2; /* عمودين فقط للجوال */
+    }
+    .music-player {
+        position: static;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+}
